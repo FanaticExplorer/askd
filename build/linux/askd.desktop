@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=askd
+Exec=askd
+Icon=askd
+Categories=Development;
+Terminal=false
+Keywords=wails
+Version=1.0
+StartupNotify=false

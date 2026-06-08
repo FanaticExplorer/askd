@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="/style.css"/>
+    <title>askd</title>
+  <script type="module" crossorigin src="/assets/index-DvvRtxto.js"></script>
+</head>
+<body>
+<div id="app">
+    <div id="empty-state">
+        <div class="empty-cat">/ᐠ - ˕ -マ Ⳋ</div>
+        <p class="empty-title">Waiting for questions</p>
+        <p class="empty-desc">The agent hasn't asked anything yet.</p>
+        <p class="empty-promo">
+            <a href="https://github.com/FanaticExplorer/askd" target="_blank">project</a>
+            &middot;
+            <a href="https://donate.fanaticexplorer.dev" target="_blank">creator</a>
+        </p>
+    </div>
+
+    <div id="questions" style="display:none">
+        <div id="progress-bar">
+            <div id="progress-fill"></div>
+        </div>
+        <p id="progress-text"></p>
+
+        <h2 id="q-title"></h2>
+        <p id="q-desc"></p>
+
+        <fieldset id="q-options"></fieldset>
+
+        <div id="q-custom" style="display:none">
+            <label for="custom-input">Your own answer</label>
+            <textarea id="custom-input" placeholder="Type here..." rows="3"></textarea>
+        </div>
+
+        <p id="validation-msg" role="alert"></p>
+
+        <div id="nav">
+            <button id="btn-back" type="button">Back</button>
+            <button id="btn-next" type="button">Next</button>
+            <button id="btn-submit" type="button" style="display:none">Submit</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
