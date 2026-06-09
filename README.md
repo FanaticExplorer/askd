@@ -7,7 +7,7 @@
 Most agents either can't ask you questions at all; and even if they do, the interface of it is locked in the TUI, making you deal with downsides of terminal input: no mouse, no copy-paste, no spellcheck, and a cramped interface. **askd** changes that. Once installed as MCP server, the tray icon appears as soon as your agent starts. When the agent needs your input, you get a notification, you click the icon, and a sleek GUI opens with the question and options. You can click to select answers, copy-paste into the textarea, and even write free-form input if allowed - finally returning you the freedom of GUI.
 
 "There must be a catch," you say. "If it has a GUI, it must be resource-hungry, right?" Wrong!
-Since it's written in lightweight Go on top of [Wails v3](https://v3.wails.io), **askd** uses a fraction of the resources of typical Node.js MCP servers. Whole thing fits in a less than 25 MB binary with 8 MB of RAM while used!
+Since it's written in lightweight Go on top of [Wails v3](https://v3.wails.io), **askd** uses a fraction of the resources of typical Node.js MCP servers. Whole thing fits in one binary less than 15MB! 
 
 ## Install
 
