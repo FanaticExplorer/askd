@@ -12,19 +12,26 @@ export class QuestionAnswer {
      * @param {Partial<QuestionAnswer>} [$$source = {}] - The source object to create the QuestionAnswer.
      */
     constructor($$source = {}) {
-        if (!("selectedIndexes" in $$source)) {
+        if (!("question" in $$source)) {
             /**
              * @member
-             * @type {number[]}
+             * @type {string}
              */
-            this["selectedIndexes"] = [];
+            this["question"] = "";
+        }
+        if (!("choices" in $$source)) {
+            /**
+             * @member
+             * @type {string[]}
+             */
+            this["choices"] = [];
         }
         if (/** @type {any} */(false)) {
             /**
              * @member
              * @type {string | undefined}
              */
-            this["customText"] = undefined;
+            this["custom"] = undefined;
         }
 
         Object.assign(this, $$source);
@@ -36,10 +43,10 @@ export class QuestionAnswer {
      * @returns {QuestionAnswer}
      */
     static createFrom($$source = {}) {
-        const $$createField0_0 = $$createType0;
+        const $$createField1_0 = $$createType0;
         let $$parsedSource = typeof $$source === 'string' ? JSON.parse($$source) : $$source;
-        if ("selectedIndexes" in $$parsedSource) {
-            $$parsedSource["selectedIndexes"] = $$createField0_0($$parsedSource["selectedIndexes"]);
+        if ("choices" in $$parsedSource) {
+            $$parsedSource["choices"] = $$createField1_0($$parsedSource["choices"]);
         }
         return new QuestionAnswer(/** @type {Partial<QuestionAnswer>} */($$parsedSource));
     }
