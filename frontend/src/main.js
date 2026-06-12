@@ -31,8 +31,9 @@ Events.On("new-session", (event) => {
     currentSession = event.data;
     currentIndex = 0;
     answers = currentSession.questions.map(() => ({
-        selectedIndexes: [],
-        customText: "",
+        question: "",
+        choices: [],
+        custom: "",
     }));
     clearValidation();
     showQuestions();
@@ -73,6 +74,9 @@ function showValidation(msg) {
 
 function renderQuestion() {
     const q = currentSession.questions[currentIndex];
+    const ans = answers[currentIndex];
+
+    ans.question = q.title;
 
     updateProgress();
     titleEl.textContent = q.title;
@@ -80,7 +84,6 @@ function renderQuestion() {
     clearValidation();
 
     optionsEl.innerHTML = "";
-    const ans = answers[currentIndex];
     const inputType = q.multiSelect ? "checkbox" : "radio";
     const groupName = "q-opt-" + currentIndex;
 
@@ -92,7 +95,7 @@ function renderQuestion() {
         input.type = inputType;
         input.name = groupName;
         input.value = i;
-        if (ans.selectedIndexes.includes(i)) {
+        if (ans.choices.includes(opt.label)) {
             input.checked = true;
         }
 
@@ -100,14 +103,14 @@ function renderQuestion() {
             clearValidation();
             if (q.multiSelect) {
                 if (input.checked) {
-                    ans.selectedIndexes.push(i);
+                    ans.choices.push(opt.label);
                 } else {
-                    ans.selectedIndexes = ans.selectedIndexes.filter(
-                        (idx) => idx !== i
+                    ans.choices = ans.choices.filter(
+                        (c) => c !== opt.label
                     );
                 }
             } else {
-                ans.selectedIndexes = [i];
+                ans.choices = [opt.label];
             }
         });
 
@@ -148,7 +151,7 @@ function renderQuestion() {
 
     if (q.allowCustom) {
         customEl.style.display = "block";
-        customInput.value = ans.customText;
+        customInput.value = ans.custom;
     } else {
         customEl.style.display = "none";
     }
@@ -166,7 +169,7 @@ function renderQuestion() {
 function saveCurrentAnswer() {
     const ans = answers[currentIndex];
     if (currentSession.questions[currentIndex].allowCustom) {
-        ans.customText = customInput.value;
+        ans.custom = customInput.value;
     }
 }
 
@@ -188,8 +191,8 @@ btnSubmit.addEventListener("click", () => {
     for (let i = 0; i < answers.length; i++) {
         const q = currentSession.questions[i];
         const a = answers[i];
-        const hasSelection = a.selectedIndexes.length > 0;
-        const hasCustom = q.allowCustom && a.customText.trim() !== "";
+        const hasSelection = a.choices.length > 0;
+        const hasCustom = q.allowCustom && a.custom.trim() !== "";
         if (!hasSelection && !hasCustom) {
             currentIndex = i;
             renderQuestion();

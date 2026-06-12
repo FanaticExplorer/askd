@@ -24,8 +24,9 @@ type Session struct {
 }
 
 type QuestionAnswer struct {
-	SelectedIndexes []int  `json:"selectedIndexes"`
-	CustomText      string `json:"customText,omitempty"`
+	Question string   `json:"question"`
+	Choices  []string `json:"choices"`
+	Custom   string   `json:"custom,omitempty"`
 }
 
 type SessionAnswer struct {
