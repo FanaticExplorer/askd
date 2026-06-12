@@ -21,7 +21,8 @@ func runMCPServer(state *AppState, logger *slog.Logger) {
 	tool := mcp.NewTool("ask_user_questions",
 		mcp.WithDescription("Ask the user one or more questions and wait for answers. "+
 			"Only one session can be pending at a time. "+
-			"If a previous session is awaiting a response, the call is rejected."),
+			"If a previous session is awaiting a response, the call is rejected. "+
+			"allowCustom defaults to true — set it to false only when options are exhaustive."),
 		mcp.WithInputSchema[AskQuestionsInput](),
 	)
 
@@ -47,6 +48,13 @@ func runMCPServer(state *AppState, logger *slog.Logger) {
 
 		if len(questions) == 0 {
 			return mcp.NewToolResultError("questions must not be empty"), nil
+		}
+
+		for i := range questions {
+			if questions[i].AllowCustom == nil {
+				trueVal := true
+				questions[i].AllowCustom = &trueVal
+			}
 		}
 
 		session := Session{

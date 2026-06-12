@@ -11,7 +11,7 @@ type Question struct {
 	Description string   `json:"description,omitempty"`
 	Options     []Option `json:"options"`
 	MultiSelect bool     `json:"multiSelect,omitempty"`
-	AllowCustom bool     `json:"allowCustom,omitempty"`
+	AllowCustom *bool    `json:"allowCustom,omitempty"`
 }
 
 type AskQuestionsInput struct {
