@@ -82,7 +82,7 @@ func runMCPServer(state *AppState, logger *slog.Logger) {
 			case state.timeoutChan <- struct{}{}:
 			default:
 			}
-			return mcp.NewToolResultError("timeout: user did not respond within 5 minutes"), nil
+			return mcp.NewToolResultError("timeout: user did not respond within 15 minutes"), nil
 		}
 	})
 
